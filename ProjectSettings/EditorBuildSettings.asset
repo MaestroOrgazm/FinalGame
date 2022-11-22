@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: a9b5c8ee87ab4ec4492ac667a2804608
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/LevelOne.unity
+    guid: a30598859d65ec74f9ae06a2b859ae7a
+  - enabled: 1
+    path: Assets/Assets/Charters and levels/Gothicvania Swamp Artwork/Scenes/demo.unity
+    guid: b85bc875abbc6465696a7b8ddc5a2852
+  - enabled: 1
+    path: Assets/Assets/Charters and levels/Bringer Of Death/Demo.unity
+    guid: f354e3c17707db1499b35dc25f56fb37
+  - enabled: 1
+    path: Assets/Fonts/_Scene/Font.unity
+    guid: a9b7061b472e28d4bb0cc6bd7fe8a1ef
+  - enabled: 1
+    path: Assets/Assets/Charters and levels/GothicVania Church/Scenes/demo.unity
+    guid: 9dea8406e5e254282868c83e30be111b
+  - enabled: 1
+    path: Assets/Assets/UI/Fantasy Wooden GUI  Free/Scene/Demo.unity
+    guid: a5a06ca349139534f8cc1094d2fc7747
+  - enabled: 1
+    path: Assets/Assets/Charters and levels/Gothicvania Cemetery Artwork/Scenes/demo.unity
+    guid: a5acc8f1f38ee46c8ada7ef1a56774d2
+  - enabled: 1
+    path: Assets/Assets/Charters and levels/Monsters Creatures Fantasy/Demo/SceneDemo.unity
+    guid: 9b86dab9b4663f3498839add32b80ed6
+  - enabled: 1
+    path: Assets/Assets/Charters and levels/Warrior free set/Demo.unity
+    guid: 14a2430fd109a08429c462b16fc369a6
+  - enabled: 1
+    path: Assets/Assets/Charters and levels/Gothicvania-Town/Scenes/demo.unity
+    guid: 496692dcacd0d4ef6a92e1218aad3d80
+  - enabled: 1
+    path: Assets/Assets/Charters and levels/Medieval King Pack 2/Demo/Scene_demo.unity
+    guid: 383ddd02253638048b0b2bfd19245b01
+  - enabled: 1
+    path: Assets/Assets/UI/Cainos/Pixel Art Icon Pack - RPG/Scene/SC_Pixel_Art_Icon_Pack___RPG.unity
+    guid: c07d58ced8cc34f43b08253a42d33891
+  m_configObjects: {}
