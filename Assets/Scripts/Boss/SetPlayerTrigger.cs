@@ -9,6 +9,8 @@ public class SetPlayerTrigger : MonoBehaviour
     [SerializeField] private Boss _boss;
     [SerializeField] private GameObject _border;
 
+    private AudioSource _audioSource;
+
     private void OnDisable()
     {
         _boss.BossDie -= BossDie;
@@ -20,7 +22,8 @@ public class SetPlayerTrigger : MonoBehaviour
         {
             if (collision.TryGetComponent(out Player player))
             {
-                GetComponent<AudioSource>().Play();
+                _audioSource = GetComponent<AudioSource>();
+                _audioSource.Play();
                 _boss.SetPlayer(player);
                 _border.SetActive(true);
                 _boss.BossDie += BossDie;

@@ -30,6 +30,12 @@ public class PlayerMovment : MonoBehaviour
     private int _deltaFlip = 0;
     private bool _isFly;
     private bool _isSkillReady = true;
+    private const string IsFly = "IsFly";
+    private const string IsJump = "IsJump";
+    private const string Skill = "Skill";
+    private const string IsRun = "IsRun";
+    private const string Hurt = "Hurt";
+    private const string IsDeath = "IsDeath";
 
     public event UnityAction StartAttack;
     public event UnityAction PressActive;
@@ -70,13 +76,13 @@ public class PlayerMovment : MonoBehaviour
 
         if (_isFly)
         {
-            _animator.SetBool("IsFly", true);
-            _animator.SetBool("IsJump", true);
+            _animator.SetBool(IsFly, true);
+            _animator.SetBool(IsJump, true);
         }
         else
         {
-            _animator.SetBool("IsJump", false);
-            _animator.SetBool("IsFly", false);
+            _animator.SetBool(IsJump, false);
+            _animator.SetBool(IsFly, false);
         }
     }
 
@@ -98,7 +104,7 @@ public class PlayerMovment : MonoBehaviour
         if (Mathf.Abs(_rigidbody2D.velocity.y) < _limit)
         {
             _rigidbody2D.AddForce(new Vector2(0, _jumpForse), ForceMode2D.Impulse);
-            _animator.SetBool("IsJump", true);
+            _animator.SetBool(IsJump, true);
         }
     }
     public void OnSkill()
@@ -108,7 +114,7 @@ public class PlayerMovment : MonoBehaviour
             Skill skill = Instantiate(_template, _shootPoint.position, Quaternion.identity);
             skill.ChangeScale(transform);
             skill.SetPlayer(_player);
-            _animator.SetTrigger("Skill");
+            _animator.SetTrigger(Skill);
             _isSkillReady = false;
             SkillReady?.Invoke(false);
             Invoke(nameof(OnReady), _skillDelay);
@@ -132,9 +138,9 @@ public class PlayerMovment : MonoBehaviour
     private void Move()
     {
         if (_moveDirection != 0)
-            _animator.SetBool("IsRun", true);
+            _animator.SetBool(IsRun, true);
         else
-            _animator.SetBool("IsRun", false);
+            _animator.SetBool(IsRun, false);
 
         float scaledMoveSpeed = _speed * Time.deltaTime;
         transform.position += new Vector3(_moveDirection, 0, 0) * scaledMoveSpeed;
@@ -153,12 +159,12 @@ public class PlayerMovment : MonoBehaviour
 
     private void PlayerHurt()
     {
-        _animator.SetTrigger("Hurt");
+        _animator.SetTrigger(Hurt);
     }
 
     private void PlayerDeath()
     {
-        _animator.SetBool("IsDeath", true);
+        _animator.SetBool(IsDeath, true);
         _playerInput.Disable();
     }
 }

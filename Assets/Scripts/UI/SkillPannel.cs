@@ -6,6 +6,9 @@ public class SkillPannel : MonoBehaviour
     [SerializeField] private PlayerMovment _playerMovment;
     [SerializeField] private Image _image;
 
+    private float _maxAlpha = 1;
+    private float _minAlpha = 0.5f;
+
     private void OnEnable()
     {
         _playerMovment.SkillReady += ChangePannel;
@@ -21,9 +24,9 @@ public class SkillPannel : MonoBehaviour
         var color = _image.color;
 
         if (ready)
-            color.a = 1;
+            color.a = _maxAlpha;
         else
-            color.a = 0.5f;
+            color.a = _minAlpha;
 
         _image.color = color;
     }

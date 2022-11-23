@@ -15,6 +15,7 @@ public class EnemyMoveToPlayer : MonoBehaviour
     private EnemyStateMashine _stateMashine;
     private Animator _animator;
     private Coroutine _coroutine;
+    private const string IsRun = "IsRun";
 
     public event UnityAction<Player> PlayerReached;
 
@@ -44,7 +45,7 @@ public class EnemyMoveToPlayer : MonoBehaviour
 
     private IEnumerator MoveToPlayer(Player player)
     {
-        _animator.SetBool("IsRun", true);
+        _animator.SetBool(IsRun, true);
 
         while (Vector3.Distance(transform.position, player.transform.position) > _attackDistanse)
         {
@@ -52,7 +53,7 @@ public class EnemyMoveToPlayer : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        _animator.SetBool("IsRun", false);
+        _animator.SetBool(IsRun, false);
         PlayerReached?.Invoke(player);
     }
 }

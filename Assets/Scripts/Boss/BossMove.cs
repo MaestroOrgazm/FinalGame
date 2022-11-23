@@ -23,6 +23,8 @@ public class BossMove : MonoBehaviour
     private Coroutine _movingToPlayer;
     private SpriteRenderer _spriteRenderer;
     private bool _needFlip = true;
+    private const string IsRun = "IsRun";
+
 
     private void OnEnable()
     {
@@ -36,7 +38,7 @@ public class BossMove : MonoBehaviour
 
     private void OnDisable()
     {
-        _animator.SetBool("IsRun", false);
+        _animator.SetBool(IsRun, false);
         StopCoroutine(_movingToPlayer);
     }
 
@@ -66,7 +68,7 @@ public class BossMove : MonoBehaviour
 
     private void StartMove()
     {
-        _animator.SetBool("IsRun", true);
+        _animator.SetBool(IsRun, true);
         _movingToPlayer = StartCoroutine(MoveToPlayer());
     }
 }

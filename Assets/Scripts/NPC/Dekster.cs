@@ -22,6 +22,9 @@ public class Dekster : MonoBehaviour
     private Vector3 _distanseRight = new Vector3(0.8f, 1.7f, 0);
     private float _lastHealTime;
     private int _zero = 0;
+    private const string Attack = "Attack2";
+    private const string Death = "Death";
+    private AudioSource _audioSource;
 
     private void Start()
     {
@@ -30,7 +33,8 @@ public class Dekster : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collider = GetComponent<BoxCollider2D>();
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        _collider.enabled = false;
+        _collider.enabled = false; 
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -42,7 +46,7 @@ public class Dekster : MonoBehaviour
             if (_player.CurrentHealth > _zero && _player.CurrentHealth < _player.MaxHealth)
                 GiveHeal();
             else if (_player.CurrentHealth <= _zero)
-                Death();
+                StartDeath();
         }
 
         _lastHealTime -= Time.deltaTime;
@@ -56,7 +60,7 @@ public class Dekster : MonoBehaviour
 
     private void Move()
     {
-        if (_player.gameObject.GetComponent<Transform>().localScale.x > 0)
+        if (_player.gameObject.transform.localScale.x > 0)
             _spriteRenderer.flipX = false;
         else
             _spriteRenderer.flipX = true;
@@ -71,17 +75,17 @@ public class Dekster : MonoBehaviour
     {
         if (_lastHealTime <= _zero)
         {
-            _animator.Play("Attack2"); 
-            GetComponent<AudioSource>().Play();
+            _animator.Play(Attack);
+            _audioSource.Play();
             _lastHealTime = _healDeley;
             _player.ApplyHeal(_heal);
         }
     }
 
-    private void Death()
+    private void StartDeath()
     {
-        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         _collider.enabled = true;
-        _animator.Play("Death");
+        _animator.Play(Death);
     }
 }

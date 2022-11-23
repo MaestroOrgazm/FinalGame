@@ -17,8 +17,8 @@ public class CardView : MonoBehaviour
     {
         _image.sprite = _card.Icon;
         _name.text = _card.Name;
-        _health.text = ($"{_card.Health}");
-        _damage.text = ($"{_card.Damage}");
-        _reward.text = ($"{_card.Reward}");
+        _health.text = _card.Health.ToString();
+        _damage.text = _card.Damage.ToString();
+        _reward.text = _card.Reward.ToString();
     }
 }

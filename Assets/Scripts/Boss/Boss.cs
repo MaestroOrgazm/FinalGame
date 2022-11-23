@@ -11,6 +11,7 @@ public class Boss : Enemy
     [SerializeField] private BossMove _move;
 
     private Player _player;
+
     public Player Target => _player;
 
     public event UnityAction BossDie;
@@ -23,19 +24,11 @@ public class Boss : Enemy
 
     public override void TakeDamage(int damage)
     {
-        _health -= damage;
-        _animator.SetTrigger("Hit");
+        base.TakeDamage(damage);
 
         if (_health <= 0)
         {
-            Wallet.ChangeMoney(_reward);
-            _boxCollider.enabled = false;
-            _rb.bodyType = RigidbodyType2D.Static;
-            _animator.SetBool("IsDeath", true);
             BossDie?.Invoke();
-            _audioSource.clip = _deathSound;
-            _audioSource.Play();
-            Destroy(gameObject, _deathDelay);
         }
     }
 }

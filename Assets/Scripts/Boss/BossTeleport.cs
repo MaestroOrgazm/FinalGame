@@ -14,13 +14,15 @@ public class BossTeleport : MonoBehaviour
     private Coroutine _teleport;
     private Animator _animator;
     private Boss _boss;
+    private const string Teleport = "Teleport";
+    private const string Teleport2 = "Teleport2";
 
     private void OnEnable()
     {
         _bossMove.enabled = false;
         _boss = GetComponent<Boss>();
         _animator = GetComponent<Animator>();
-        _teleport = StartCoroutine(Teleport());
+        _teleport = StartCoroutine(StartTeleport());
     }
 
     private void OnDisable()
@@ -28,19 +30,20 @@ public class BossTeleport : MonoBehaviour
         StopCoroutine(_teleport);
     }
 
-    private IEnumerator Teleport()
+    private IEnumerator StartTeleport()
     {
         yield return _animationDeley;
-        _animator.SetTrigger("Teleport");
+        _animator.SetTrigger(Teleport);
         yield return _animationDeley;
 
-        while (Mathf.Abs(transform.position.y - _boss.Target.transform.position.y) > _bossMove.HeightDifference || Mathf.Abs(_boss.Target.transform.position.y - transform.position.y) > _bossMove.HeightDifference)
+        while (Mathf.Abs(transform.position.y - _boss.Target.transform.position.y) > _bossMove.HeightDifference ||
+               Mathf.Abs(_boss.Target.transform.position.y - transform.position.y) > _bossMove.HeightDifference)
         {
             transform.position = _points[Random.Range(0, _points.Length)].transform.position;
             yield return null;
         }
 
-        _animator.SetTrigger("Teleport2");
+        _animator.SetTrigger(Teleport2);
         yield return _animationDeley;
         _bossMove.enabled = true;
     }

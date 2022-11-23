@@ -18,12 +18,14 @@ public class Enemy : MonoBehaviour
     protected int _damage;
     protected int _reward;
     protected float _deathDelay = 0.5f;
+    protected const string Hit = "Hit";
+    protected const string IsDeath = "IsDeath";
 
     public int Reward => _reward;
     public int Damage => _damage;
     public int Health => _health;
 
-    protected void Start()
+    private void Start()
     {
         _health = _card.Health;
         _damage = _card.Damage;
@@ -37,14 +39,14 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         _health -= damage;
-        _animator.SetTrigger("Hit");
+        _animator.SetTrigger(Hit);
 
         if (_health <= 0)
         {
             Wallet.ChangeMoney(_reward);
             _boxCollider.enabled = false;
             _rb.bodyType = RigidbodyType2D.Static;
-            _animator.SetBool("IsDeath", true);
+            _animator.SetBool(IsDeath, true);
             _audioSource.clip = _deathSound;
             _audioSource.Play();
             Destroy(gameObject, _deathDelay);

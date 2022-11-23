@@ -11,6 +11,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject _activeButton;
 
     private Player _player;
+    private PlayerMovment _playerMovment;
     private List<ItemView> _itemViews = new();
 
     private void OnDisable()
@@ -19,6 +20,9 @@ public class Shop : MonoBehaviour
         {
             _itemViews[i].OnBuy -= ItemSell;
         }
+
+        if (_playerMovment != null)
+            _playerMovment.PressActive -= ActiveObject;
     }
 
     private void Start()
@@ -47,7 +51,8 @@ public class Shop : MonoBehaviour
         {
             _activeButton.SetActive(true);
             _player = player;
-            _player.GetComponent<PlayerMovment>().PressActive += ActiveObject;
+            _playerMovment = _player.GetComponent<PlayerMovment>();
+            _playerMovment.PressActive += ActiveObject;
         }
     }
 

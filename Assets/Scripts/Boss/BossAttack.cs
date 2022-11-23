@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent (typeof(Animator))]
+[RequireComponent (typeof(AudioSource))]
+[RequireComponent (typeof(Boss))]
 
 public class BossAttack : MonoBehaviour
 {
@@ -17,6 +15,7 @@ public class BossAttack : MonoBehaviour
     private Animator _animator;
     private Boss _boss;
     protected AudioSource _audioSource;
+    private const string Attack = "Attack";
 
     private void OnEnable()
     {
@@ -36,7 +35,7 @@ public class BossAttack : MonoBehaviour
         {
             if (_lastAttackTime <= 0)
             {
-                _animator.SetTrigger("Attack");
+                _animator.SetTrigger(Attack);
                 _audioSource.clip = _attackSound;
                 _audioSource.Play();
                 _lastAttackTime = _delay;

@@ -19,6 +19,7 @@ public class EnemyPatrolling : MonoBehaviour
     private Coroutine _moving;
     private Vector3 _direction = new Vector3(5, 0, 0);
     private Vector3 _needPoint;
+    private const string IsRun = "IsRun";
 
     private void Awake()
     {
@@ -46,7 +47,7 @@ public class EnemyPatrolling : MonoBehaviour
         _direction = -_direction;
         NeedFlip = !NeedFlip;
         _spriteRenderer.flipX = NeedFlip;
-        _animator.SetBool("IsRun", true); 
+        _animator.SetBool(IsRun, true); 
         _moving = StartCoroutine(Moving());
     }
 
@@ -63,7 +64,7 @@ public class EnemyPatrolling : MonoBehaviour
 
     private IEnumerator Waiting()
     {
-        _animator.SetBool("IsRun", false);
+        _animator.SetBool(IsRun, false);
         yield return _wait;
         ChangeDirection();
     }

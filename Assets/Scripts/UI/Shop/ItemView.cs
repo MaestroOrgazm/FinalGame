@@ -32,7 +32,7 @@ public class ItemView : MonoBehaviour
         _label.text = item.Name;
         _description.text = item.Description;
         Price = item.Price;
-        _priceText.text = $"{item.Price}";
+        _priceText.text = item.Price.ToString();
         Item = item;
     }
 

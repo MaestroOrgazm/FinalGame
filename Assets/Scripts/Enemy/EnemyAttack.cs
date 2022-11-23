@@ -20,6 +20,8 @@ public class EnemyAttack : MonoBehaviour
     private Animator _animator;
     protected AudioSource _audioSource;
     private int _styleAttack;
+    private const string Attack1 = "Attack1";
+    private const string Attack2 = "Attack2";
 
     private void Awake()
     {
@@ -55,9 +57,9 @@ public class EnemyAttack : MonoBehaviour
             _styleAttack = Random.Range(0, 2);
 
             if (_styleAttack > 0)
-                _animator.SetTrigger("Attack1");
+                _animator.SetTrigger(Attack1);
             else
-                _animator.SetTrigger("Attack2");
+                _animator.SetTrigger(Attack2);
 
             _audioSource.clip = _attackSound;
             _audioSource.Play();

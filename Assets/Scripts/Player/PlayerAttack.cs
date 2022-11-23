@@ -19,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
     private int _damage;
     private bool _isAttack = false;
     private float _distance = 1.5f;
+    private const string IsAttack = "Attack";
 
     private void OnEnable()
     {
@@ -60,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator StartAttack()
     {
-        _animator.SetTrigger("Attack"); 
+        _animator.SetTrigger(IsAttack); 
         GetComponent<AudioSource>().Play();
 
         if (_hit.Length > 1)
